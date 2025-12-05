@@ -19,8 +19,20 @@
               // Using standard Zinc palette for the "Chat GPT" minimal aesthetic
               // Overriding defaults if necessary or just using standard classes
             },
+            keyframes: {
+              shimmer: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            },
             animation: {
               'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shimmer': 'shimmer 3s infinite linear',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
             }
           }
         }

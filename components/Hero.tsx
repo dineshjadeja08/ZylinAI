@@ -1,27 +1,70 @@
-import React from 'react';
-import { PhoneCall, CheckCircle2, MessageSquare, Calendar, Sparkles, ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { PhoneCall, CheckCircle2, MessageSquare, Calendar, Sparkles, ArrowRight, Info } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      // Normalize mouse position from -1 to 1
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = (event.clientY / window.innerHeight) * 2 - 1;
+      
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-20 pb-24 lg:pt-32 lg:pb-40 bg-black">
-      {/* Background Glow (Subtle White/Grey) */}
-      <div className="absolute top-0 left-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-zinc-800/20 blur-[120px]" />
+      {/* Interactive Background Elements */}
+      <div 
+        className="absolute top-0 left-0 -z-10 h-[600px] w-[600px] -translate-x-1/3 -translate-y-1/4 rounded-full bg-blue-900/20 blur-[120px] transition-transform duration-1000 ease-out will-change-transform"
+        style={{
+          transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * -30}px)`
+        }}
+      />
+      <div 
+        className="absolute bottom-0 right-0 -z-10 h-[600px] w-[600px] translate-x-1/3 translate-y-1/4 rounded-full bg-indigo-900/10 blur-[100px] transition-transform duration-1000 ease-out will-change-transform"
+        style={{
+          transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)`
+        }}
+      />
+      
+      {/* Central Stabilizing Glow */}
+      <div className="absolute top-1/2 left-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-900/30 blur-[130px]" />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
           {/* Text Content */}
           <div className="text-center lg:text-left">
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-8 backdrop-blur-sm hover:bg-blue-500/20 transition-all cursor-pointer group">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              <span className="tracking-wide uppercase text-xs font-bold">Early Access</span>
-              <span className="h-4 w-px bg-blue-500/20"></span>
-              <span className="text-zinc-100 flex items-center gap-1">
-                Get 50% Off Lifetime Plans <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </span>
-            </a>
+            {/* Badge with Tooltip */}
+            <div className="relative inline-block mb-8 group">
+                <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 backdrop-blur-sm hover:bg-blue-500/20 transition-all cursor-pointer">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  </span>
+                  <span className="tracking-wide uppercase text-xs font-bold">Early Access</span>
+                  <span className="h-4 w-px bg-blue-500/20"></span>
+                  <span className="text-zinc-100 flex items-center gap-1">
+                    Get 50% Off Lifetime Plans <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </span>
+                </a>
+                
+                {/* Tooltip Content */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-4 bg-zinc-900/95 border border-zinc-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 text-center pointer-events-none backdrop-blur-md">
+                    <p className="text-xs text-zinc-300 font-normal leading-relaxed">
+                        Join the waitlist today to lock in <span className="text-white font-bold">50% off</span> any paid plan for the lifetime of your subscription.
+                    </p>
+                    {/* Arrow */}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-x-8 border-x-transparent border-t-8 border-t-zinc-700/50"></div>
+                </div>
+            </div>
             
             <h1 className="text-5xl font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl leading-[1.1]">
               Never Miss a <br/>

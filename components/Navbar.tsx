@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavItem } from '../types';
 
 const navItems: NavItem[] = [
@@ -43,13 +43,17 @@ const Navbar: React.FC = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div 
-            className="flex flex-shrink-0 items-center gap-2 cursor-pointer" 
+            className="flex flex-shrink-0 items-center gap-3 cursor-pointer" 
             onClick={scrollToTop}
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black">
-              <Zap size={20} fill="currentColor" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 shadow-[0_0_12px_rgba(37,99,235,0.4)]">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="12" r="2" fill="white" />
+                  <rect x="10" y="4" width="4" height="16" rx="2" fill="white" />
+                  <rect x="16" y="8" width="4" height="8" rx="2" fill="white" />
+              </svg>
             </div>
-            <span className="text-xl font-bold tracking-tight text-white">Zylin</span>
+            <span className="text-3xl font-bold tracking-tight text-white font-sans">Zylin</span>
           </div>
 
           {/* Desktop Nav */}

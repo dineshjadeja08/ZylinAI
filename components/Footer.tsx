@@ -18,20 +18,20 @@ const Footer: React.FC = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="mb-10">
+        {/* <div className="mb-10">
           <a
             href="#contact"
             className="rounded-full bg-white px-8 py-3 text-base font-bold text-black transition-all hover:bg-zinc-200 inline-block shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
           >
             Book a Demo
           </a>
-        </div>
+        </div> */}
 
         {/* Essential Links */}
         <div className="flex flex-wrap justify-center gap-8 mb-8 text-sm text-zinc-500">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact Support</a>
+          <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
+          <a href="mailto:support@zylin.ai" className="hover:text-white transition-colors">Contact Support</a>
         </div>
 
         {/* Copyright */}
